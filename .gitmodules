@@ -2,3 +2,12 @@
 	path = genode
 	url = https://github.com/702nados/genode
 	branch = focnados
+[submodule "genode-dom0-HW"]
+	path = genode-dom0-HW
+	url = https://github.com/702nados/genode-dom0-HW
+[submodule "genode-Taskloader"]
+	path = genode-Taskloader
+	url = https://github.com/702nados/genode-Taskloader
+[submodule "genode-Parser"]
+	path = genode-Parser
+	url = https://github.com/702nados/genode-Parser
