@@ -23,13 +23,16 @@ toolchain:
 
 # ================================================================
 # Download Genode external sources. Only needs to be done once per system.
-ports: foc libports
+ports: foc libports dde_linux
 
 foc:
 	$(MAKE) -C genode/repos/base-focnados prepare
 
 libports:
 	$(MAKE) -C genode/repos/libports prepare
+
+dde_linux:
+	$(MAKE) -C genode/repos/dde_linux prepare
 #
 # ================================================================
 
