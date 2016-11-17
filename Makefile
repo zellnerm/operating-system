@@ -2,7 +2,7 @@
 TOOLCHAIN_TARGET    ?= arm
 
 # options: see tool/create_builddir
-GENODE_TARGET       ?= focnados_pbxa9
+GENODE_TARGET       ?= focnados_panda
 
 BUILD_DIR           ?= /build
 TOOLCHAIN_BUILD_DIR ?= $(BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
@@ -39,7 +39,7 @@ libports:
 platform: genode_build_dir
 
 genode_build_dir:
-	tool/create_builddir $(GENODE_TARGET) BUILD_DIR=$(GENODE_BUILD_DIR)
+	genode/tool/create_builddir $(GENODE_TARGET) BUILD_DIR=$(GENODE_BUILD_DIR)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/repos/libports\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-dom0-HW\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Taskloader\n' >> $(BUILD_CONF)

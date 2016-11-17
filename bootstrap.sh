@@ -9,5 +9,3 @@
 #
 # Contributor: Bernhard Blieninger
 ##############################
-cd /vagrant/
-sudo make vde
