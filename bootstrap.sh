@@ -9,3 +9,4 @@
 #
 # Contributor: Bernhard Blieninger
 ##############################
+sudo ifconfig enp0s8 192.168.217.20 netmask 255.255.255.0 up
