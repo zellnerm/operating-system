@@ -60,6 +60,10 @@ clean:
 # Run Genode with an active dom0 server.
 run:
 	$(MAKE) -C $(GENODE_BUILD_DIR) run/dom0-HW #declare which run file to run
+	sudo cp /build/genode-focnados_panda/var/run/dom0-HW/image.elf /var/lib/tftpboot/
+	sudo cp /build/genode-focnados_panda/var/run/dom0-HW/modules.list /var/lib/tftpboot/
+	sudo cp -R /build/genode-focnados_panda/var/run/dom0-HW/genode /var/lib/tftpboot/
+	
 #
 # ================================================================
 

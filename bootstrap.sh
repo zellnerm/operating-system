@@ -9,4 +9,6 @@
 #
 # Contributor: Bernhard Blieninger
 ##############################
-sudo ifconfig enp0s8 192.168.217.20 netmask 255.255.255.0 up
+systemctl stop NetworkManager.service
+ip a add 192.168.217.20/24 dev enp0s8
+ip l set up dev enp0s8
