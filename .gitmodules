@@ -11,3 +11,9 @@
 [submodule "genode-Parser"]
 	path = genode-Parser
 	url = https://github.com/702nados/genode-Parser
+[submodule "genode-Monitoring"]
+	path = genode-Monitoring
+	url = https://github.com/702nADOS/genode-Monitoring.git
+[submodule "toolchain-host"]
+	path = toolchain-host
+	url = https://github.com/702nados/toolchain-host
