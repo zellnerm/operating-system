@@ -47,6 +47,7 @@ genode_build_dir:
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-dom0-HW\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Taskloader\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Parser\n' >> $(BUILD_CONF)
+	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Monitoring\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(BUILD_CONF)
 
 # Delete build directory for all target systems. In some cases, subfolders in the contrib directory might be corrupted. Remove manually and re-prepare if necessary.
@@ -75,30 +76,5 @@ run:
 packages:
 	sudo apt-get update
 	sudo apt-get install libncurses5-dev texinfo autogen autoconf2.64 g++ libexpat1-dev flex bison gperf cmake libxml2-dev libtool zlib1g-dev libglib2.0-dev make pkg-config gawk subversion expect git libxml2-utils syslinux xsltproc yasm iasl lynx unzip qemu
-#
-# ================================================================
-
-# ================================================================
-# VDE setup. Do once per system session. DHCP is optional.
-vde: vde-stop
-	@vde_switch -d -s /tmp/switch1
-	@sudo vde_tunctl -u $(USER) -t tap0
-	@sudo ifconfig tap0 192.168.217.254 up
-	@sudo route add -host 192.168.217.5 dev tap0
-	@vde_plug2tap --daemon -s /tmp/switch1 tap0
-
-vde-stop:
-	@-pkill vde_switch
-	@-sudo vde_tunctl -d tap0
-	@-rm -rf /tmp/switch1
-
-dhcp: dhcp-stop
-	@slirpvde -d -s /tmp/switch1 -dhcp
-
-dhcp-stop:
-	@-pkill slirpvde
-
-# Cleanup network shenanigans.
-clean-network: dhcp-stop vde-stop
 #
 # ================================================================
