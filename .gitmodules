@@ -17,3 +17,6 @@
 [submodule "toolchain-host"]
 	path = toolchain-host
 	url = https://github.com/702nados/toolchain-host
+[submodule "genode-schedulerTest"]
+	path = genode-schedulerTest
+	url = https://github.com/702nADOS/genode-schedulerTest.git

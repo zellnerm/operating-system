@@ -1,8 +1,10 @@
+PROJECT		?= fp-edf-test
+
 # options: x86 arm
 TOOLCHAIN_TARGET    ?= arm
 
 # options: see tool/create_builddir
-GENODE_TARGET       ?= focnados_panda
+GENODE_TARGET       ?= focnados_pbxa9
 
 BUILD_DIR           ?= /build
 TOOLCHAIN_BUILD_DIR ?= $(BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
@@ -48,6 +50,7 @@ genode_build_dir:
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Taskloader\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Parser\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Monitoring\n' >> $(BUILD_CONF)
+	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-schedulerTest\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(BUILD_CONF)
 
 # Delete build directory for all target systems. In some cases, subfolders in the contrib directory might be corrupted. Remove manually and re-prepare if necessary.
@@ -60,13 +63,13 @@ clean:
 # ================================================================
 # Run Genode with an active dom0 server.
 run:
-	$(MAKE) -C $(GENODE_BUILD_DIR) run/dom0-HW #declare which run file to run
+	$(MAKE) -C $(GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
 	sudo rm -f /var/lib/tftpboot/image.elf
 	sudo rm -f /var/lib/tftpboot/modules.list
 	sudo rm -rf /var/lib/tftpboot/genode
-	sudo cp /build/genode-focnados_panda/var/run/dom0-HW/image.elf /var/lib/tftpboot/
-	sudo cp /build/genode-focnados_panda/var/run/dom0-HW/modules.list /var/lib/tftpboot/
-	sudo cp -R /build/genode-focnados_panda/var/run/dom0-HW/genode /var/lib/tftpboot/
+	sudo cp /build/genode-focnados_panda/var/run/$(PROJECT)/image.elf /var/lib/tftpboot/
+	sudo cp /build/genode-focnados_panda/var/run/$(PROJECT)/modules.list /var/lib/tftpboot/
+	sudo cp -R /build/genode-focnados_panda/var/run/$(PROJECT)/genode /var/lib/tftpboot/
 	
 #
 # ================================================================
