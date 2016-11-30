@@ -1,10 +1,10 @@
-PROJECT		?= fp-edf-test
+PROJECT		?= dom0-HW
 
 # options: x86 arm
 TOOLCHAIN_TARGET    ?= arm
 
 # options: see tool/create_builddir
-GENODE_TARGET       ?= focnados_pbxa9
+GENODE_TARGET       ?= focnados_panda
 
 BUILD_DIR           ?= /build
 TOOLCHAIN_BUILD_DIR ?= $(BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
