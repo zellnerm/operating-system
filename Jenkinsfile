@@ -2,9 +2,10 @@ node {
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
       // Could possibly be obsolete, will further investigate when isnan/inf bug is fixed
-      git branch: 'master', url: 'https://github.com/argos-research/operating-system.git'  
-      git submodule init
-      git submodule update
+      checkout scm
+      //git branch: 'master', url: 'https://github.com/argos-research/operating-system.git'  
+      //git submodule init
+      //git submodule update
       //Preparing build
       //sh "make"
    }
