@@ -6,7 +6,7 @@ TOOLCHAIN_TARGET    ?= arm
 # options: see tool/create_builddir
 GENODE_TARGET       ?= focnados_panda
 
-BUILD_DIR           ?= /build
+BUILD_DIR           ?= build
 TOOLCHAIN_BUILD_DIR ?= $(BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
 GENODE_BUILD_DIR    ?= $(BUILD_DIR)/genode-$(GENODE_TARGET)
 BUILD_CONF           = $(GENODE_BUILD_DIR)/etc/build.conf
@@ -67,9 +67,9 @@ run:
 	sudo rm -f /var/lib/tftpboot/image.elf
 	sudo rm -f /var/lib/tftpboot/modules.list
 	sudo rm -rf /var/lib/tftpboot/genode
-	sudo cp /build/genode-focnados_panda/var/run/$(PROJECT)/image.elf /var/lib/tftpboot/
-	sudo cp /build/genode-focnados_panda/var/run/$(PROJECT)/modules.list /var/lib/tftpboot/
-	sudo cp -R /build/genode-focnados_panda/var/run/$(PROJECT)/genode /var/lib/tftpboot/
+	sudo cp $(BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf /var/lib/tftpboot/
+	sudo cp $(BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list /var/lib/tftpboot/
+	sudo cp -R $(BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode /var/lib/tftpboot/
 	
 #
 # ================================================================
