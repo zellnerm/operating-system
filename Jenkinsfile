@@ -6,7 +6,7 @@ node {
       git submodule init
       git submodule update
       //Preparing build
-      sh "make"
+      //sh "make"
    }
    stage('Build') {
       // Run the build of dom0-HW
