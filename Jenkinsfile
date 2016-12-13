@@ -4,7 +4,7 @@ node {
       // Could possibly be obsolete, will further investigate when isnan/inf bug is fixed
       git branch: 'master', url: 'https://github.com/argos-research/operating-system.git'  
       //Preparing build
-      sh "make"
+      //sh "make"
    }
    stage('Build') {
       // Run the build of dom0-HW
