@@ -14,7 +14,7 @@ node {
       sh "make run"
    }
    stage('Notifications') {
-      mattermostSend color: 'good', message: 'Build done!'
+      mattermostSend color: "#439FE0", message: "Build Finished: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
    }
    //Here tests or other stuff would appear
 }
