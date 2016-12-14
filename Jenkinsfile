@@ -13,7 +13,7 @@ node {
       // Run the build of dom0-HW
       sh "make run"
    }
-   stage{
+   stage('Notifications') {
       mattermostSend color: 'good', message: 'Build done!'
    }
    //Here tests or other stuff would appear
