@@ -20,3 +20,9 @@
 [submodule "genode-schedulerTest"]
 	path = genode-schedulerTest
 	url = https://github.com/argos-research/genode-schedulerTest.git
+[submodule "genode-Synchronization"]
+	path = genode-Synchronization
+	url = https://github.com/argos-research/genode-Synchronization
+[submodule "genode-AdmCtrl"]
+	path = genode-AdmCtrl
+	url = https://github.com/argos-research/genode-AdmCtrl

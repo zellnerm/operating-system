@@ -51,6 +51,8 @@ genode_build_dir:
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Parser\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Monitoring\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-schedulerTest\n' >> $(BUILD_CONF)
+	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-AdmCtrl\n' >> $(BUILD_CONF)
+	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Synchronization\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(BUILD_CONF)
 
 # Delete build directory for all target systems. In some cases, subfolders in the contrib directory might be corrupted. Remove manually and re-prepare if necessary.
