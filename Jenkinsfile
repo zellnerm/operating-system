@@ -1,7 +1,6 @@
 node {
    stage('Preparation') { // for display purposes
-      sh "rm -rf build"
-      sh "rm -rf genode/contrib"
+      sh "make clean"
       // Get some code from a GitHub repository
       // Could possibly be obsolete, will further investigate when isnan/inf bug is fixed
       checkout scm

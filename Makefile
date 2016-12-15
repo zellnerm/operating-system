@@ -11,7 +11,7 @@ TOOLCHAIN_BUILD_DIR ?= $(BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
 GENODE_BUILD_DIR    ?= $(BUILD_DIR)/genode-$(GENODE_TARGET)
 BUILD_CONF           = $(GENODE_BUILD_DIR)/etc/build.conf
 
-all: ports platform
+all: foc platform
 
 # ================================================================
 # Genode toolchain. Only needs to be done once per target (x86/arm).
