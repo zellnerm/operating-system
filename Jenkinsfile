@@ -1,6 +1,7 @@
 node {
    stage('Preparation') { // for display purposes
       sh "make clean"
+      sh "rm -rf log"
       // Get some code from a GitHub repository
       // Could possibly be obsolete, will further investigate when isnan/inf bug is fixed
       checkout scm
@@ -13,15 +14,13 @@ node {
       sh "mkdir -p log"
       sh "touch log/prepare.log"
       sh "make > log/prepare.log 2>&1"
-      sh "mkdir -p genode/build/genode-focnados_panda/log"
-      sh "touch genode/build/genode-focnados_panda/log/make.log"
+      sh "touch log/make.log"
    }
    stage('Build') {
       // Run the build of dom0-HW
-      sh "make run > build/genode-focnados_panda/log/make.log 2>&1"
+      sh "make run > log/make.log 2>&1"
    }
    stage('Notifications') {
-      sh "cp log/* genode/build/genode-focnados_panda/log/"
       mattermostSend color: "#439FE0", message: "Build Finished: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
       // should be with specific channel
       
