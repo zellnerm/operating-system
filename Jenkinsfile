@@ -9,6 +9,8 @@ node {
       //git submodule init
       //git submodule update
       //Preparing build
+      sh "wget https://nextcloud.os.in.tum.de/s/KVfFOeRXVszFROl/download --no-check-certificate -O libports.tar.bz2"
+      sh "tar xvjC genode/ -f libports.tar.bz2"
       sh "make"
    }
    stage('Build') {
