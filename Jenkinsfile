@@ -18,6 +18,7 @@ node {
    }
    stage('Notifications') {
       mattermostSend color: "#439FE0", message: "Build Finished: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+      // should be with specific channel
    }
    //Here tests or other stuff would appear
 }
