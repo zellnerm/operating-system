@@ -1,5 +1,7 @@
 node {
    stage('Preparation') { // for display purposes
+      sh "rm -rf build"
+      sh "rm -rf genode/contrib"
       // Get some code from a GitHub repository
       // Could possibly be obsolete, will further investigate when isnan/inf bug is fixed
       checkout scm
@@ -7,7 +9,7 @@ node {
       //git submodule init
       //git submodule update
       //Preparing build
-      //sh "make"
+      sh "make"
    }
    stage('Build') {
       // Run the build of dom0-HW
