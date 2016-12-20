@@ -11,7 +11,7 @@ TOOLCHAIN_BUILD_DIR ?= $(BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
 GENODE_BUILD_DIR    ?= $(BUILD_DIR)/genode-$(GENODE_TARGET)
 BUILD_CONF           = $(GENODE_BUILD_DIR)/etc/build.conf
 
-all: foc platform
+all: ports platform
 
 # ================================================================
 # Genode toolchain. Only needs to be done once per target (x86/arm).
@@ -54,7 +54,7 @@ genode_build_dir:
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-AdmCtrl\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Synchronization\n' >> $(BUILD_CONF)
 	printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(BUILD_CONF)
-	printf 'MAKE += -j4' >> $(BUILD_CONF)
+	printf 'MAKE += -j' >> $(BUILD_CONF)
 
 # Delete build directory for all target systems. In some cases, subfolders in the contrib directory might be corrupted. Remove manually and re-prepare if necessary.
 clean:
