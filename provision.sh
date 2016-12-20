@@ -13,6 +13,9 @@ sudo apt-get install libncurses5-dev texinfo autogen autoconf2.64 g++ libexpat1-
 cd /vagrant/
 sudo rm -rf genode/contrib/
 cd /vagrant/
+sudo wget https://nextcloud.os.in.tum.de/s/KVfFOeRXVszFROl/download --no-check-certificate -O libports.tar.bz2
+sudo tar xvjC genode/ -f libports.tar.bz2
+cd /vagrant/
 sudo tar xPfj genode/genode-toolchain-15.05-x86_64.tar.bz2
 cd /vagrant/
 make
