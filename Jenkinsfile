@@ -2,7 +2,7 @@ node {
    stage('Preparation') { // for display purposes
       sh "make clean"
       sh "rm -rf log"
-      sh "rm -rf genode/contrib"
+      //sh "rm -rf genode/contrib"
       // Get some code from a GitHub repository
       // Could possibly be obsolete, will further investigate when isnan/inf bug is fixed
       checkout scm
@@ -10,16 +10,17 @@ node {
       //git submodule init
       //git submodule update
       //Preparing build
-      sh "wget https://nextcloud.os.in.tum.de/s/KVfFOeRXVszFROl/download --no-check-certificate -O libports.tar.bz2"
-      sh "tar xvjC genode/ -f libports.tar.bz2"
+      //sh "wget https://nextcloud.os.in.tum.de/s/KVfFOeRXVszFROl/download --no-check-certificate -O libports.tar.bz2"
+      //sh "tar xvjC genode/ -f libports.tar.bz2"
       sh "mkdir -p log"
       sh "touch log/prepare.log"
-      sh "make > log/prepare.log 2>&1"
+      sh "rm -rf build"
+      sh "make jenkins > log/prepare.log 2>&1"
       sh "touch log/make.log"
    }
    stage('Build') {
       // Run the build of dom0-HW
-      sh "make run > log/make.log 2>&1"
+      sh "make jenkins_run > log/make.log 2>&1"
    }
    stage('Notifications') {
       sh "mkdir -p /home/bliening/ownCloud/702nados/log/${env.JOB_NAME}/${env.BUILD_NUMBER}"
