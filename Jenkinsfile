@@ -1,6 +1,6 @@
 node {
    stage('Preparation') { // for display purposes
-      sh "make clean"
+      sh "make jenkins_clean"
       sh "rm -rf log"
       //sh "rm -rf genode/contrib"
       // Get some code from a GitHub repository
@@ -14,7 +14,6 @@ node {
       //sh "tar xvjC genode/ -f libports.tar.bz2"
       sh "mkdir -p log"
       sh "touch log/prepare.log"
-      sh "rm -rf build"
       sh "make jenkins > log/prepare.log 2>&1"
       sh "touch log/make.log"
    }
