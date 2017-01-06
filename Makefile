@@ -6,7 +6,7 @@ TOOLCHAIN_TARGET    ?= arm
 # options: see tool/create_builddir
 GENODE_TARGET       ?= focnados_panda
 
-VAGRANT_BUILD_DIR           ?= build
+VAGRANT_BUILD_DIR           ?= /build
 VAGRANT_TOOLCHAIN_BUILD_DIR ?= $(VAGRANT_BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
 VAGRANT_GENODE_BUILD_DIR    ?= $(VAGRANT_BUILD_DIR)/genode-$(GENODE_TARGET)
 VAGRANT_BUILD_CONF           = $(VAGRANT_GENODE_BUILD_DIR)/etc/build.conf
