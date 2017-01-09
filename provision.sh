@@ -24,6 +24,6 @@ sudo tar xvjC genode/ -f libports.tar.bz2
 cd /vagrant/
 make
 cd /vagrant/
-sudo chown -R ubuntu build
+sudo chown -R ubuntu /build
 sudo echo ubuntu:vagrant | /usr/sbin/chpasswd
 sudo reboot
