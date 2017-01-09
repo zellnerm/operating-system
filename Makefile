@@ -6,7 +6,7 @@ TOOLCHAIN_TARGET    ?= arm
 # options: see tool/create_builddir
 GENODE_TARGET       ?= focnados_panda
 
-VAGRANT_BUILD_DIR           ?= build
+VAGRANT_BUILD_DIR           ?= /build
 VAGRANT_TOOLCHAIN_BUILD_DIR ?= $(VAGRANT_BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
 VAGRANT_GENODE_BUILD_DIR    ?= $(VAGRANT_BUILD_DIR)/genode-$(GENODE_TARGET)
 VAGRANT_BUILD_CONF           = $(VAGRANT_GENODE_BUILD_DIR)/etc/build.conf
@@ -98,12 +98,12 @@ vagrant_run:
 
 jenkins_run:
 	$(MAKE) -C $(JENKINS_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
-	rm -f /var/lib/tftpboot/image.elf
-	rm -f /var/lib/tftpboot/modules.list
-	rm -rf /var/lib/tftpboot/genode
-	cp $(JENKINS_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf /var/lib/tftpboot/
-	cp $(JENKINS_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list /var/lib/tftpboot/
-	cp -R $(JENKINS_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode /var/lib/tftpboot/
+	rm -rf /var/lib/tftpboot/image.elf \
+	/var/lib/tftpboot/modules.list \
+	/var/lib/tftpboot/genode
+	cp $(JENKINS_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf \
+	$(JENKINS_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list \
+	$(JENKINS_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode /var/lib/tftpboot/
 	
 #
 # ================================================================
