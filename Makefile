@@ -4,7 +4,7 @@ PROJECT		?= dom0-HW
 TOOLCHAIN_TARGET    ?= arm
 
 # options: see tool/create_builddir
-GENODE_TARGET       ?= focnados_panda
+GENODE_TARGET       ?= focnados_pbxa9
 
 VAGRANT_BUILD_DIR           ?= /build
 VAGRANT_TOOLCHAIN_BUILD_DIR ?= $(VAGRANT_BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
@@ -54,7 +54,7 @@ vagrant_build_dir:
 	sudo mkdir -p $(VAGRANT_BUILD_DIR)
 	sudo chown -R ubuntu $(VAGRANT_BUILD_DIR)
 	sudo chgrp -R ubuntu $(VAGRANT_BUILD_DIR)
-	sudo chmod 777 -R $(VAGRANT_BUILD_DIR)
+	sudo chmod 777 $(VAGRANT_BUILD_DIR)
 	@echo "DONE!"
 	@echo ""
 	@echo "Call genode/tool/create_builddir for target "$(GENODE_TARGET)
@@ -107,14 +107,14 @@ vagrant_run:
 	@echo ""
 	$(MAKE) -C $(VAGRANT_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
 	@echo "Create image tmp directory"
-	@mkdir -p  $(VAGRANT_BUILD_DIR)/images
+	@mkdir -p  $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)
 	@echo ""
 	@echo "Delete old images"
-	@rm -rf $(VAGRANT_BUILD_DIR)/images/image.elf $(VAGRANT_BUILD_DIR)/images/modules.list $(VAGRANT_BUILD_DIR)/images/genode
+	@rm -rf $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/image.elf $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/modules.list $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/genode
 	@echo "Copy images to tmp directory"
 	cp -R $(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf \
 	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list \
-	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode $(VAGRANT_BUILD_DIR)/images
+	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)
 
 jenkins_run:
 	$(MAKE) -C $(JENKINS_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
