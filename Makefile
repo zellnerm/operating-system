@@ -112,9 +112,9 @@ vagrant_run:
 	@echo "Delete old images"
 	@rm -rf $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/image.elf $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/modules.list $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/genode
 	@echo "Copy images to tmp directory"
-	cp -R $(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf \
-	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list \
-	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)
+	cp -R $(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/image.elf \
+	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/modules.list \
+	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)
 
 jenkins_run:
 	$(MAKE) -C $(JENKINS_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
