@@ -89,12 +89,13 @@ jenkins_clean:
 # Run Genode with an active dom0 server.
 vagrant_run:
 	$(MAKE) -C $(VAGRANT_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
-	rm -f /var/lib/tftpboot/image.elf
-	rm -f /var/lib/tftpboot/modules.list
-	rm -rf /var/lib/tftpboot/genode
-	cp $(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf /var/lib/tftpboot/
-	cp $(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list /var/lib/tftpboot/
-	cp -R $(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode /var/lib/tftpboot/
+	mkdir -p  $(VAGRANT_BUILD_DIR)/images
+	#Delete old images
+	rm -rf $(VAGRANT_BUILD_DIR)/images/image.elf $(VAGRANT_BUILD_DIR)/images/modules.list $(VAGRANT_BUILD_DIR)/images/genode
+	#Copy images to /var/lib/tftpboot
+	cp -R $(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf \
+	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list \
+	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode $(VAGRANT_BUILD_DIR)/images
 
 jenkins_run:
 	$(MAKE) -C $(JENKINS_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
