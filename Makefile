@@ -50,17 +50,32 @@ dde_linux:
 # Genode build process. Rebuild subtargets as needed.
 
 vagrant_build_dir:
-	genode/tool/create_builddir $(GENODE_TARGET) BUILD_DIR=$(VAGRANT_GENODE_BUILD_DIR)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/repos/libports\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-dom0-HW\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Taskloader\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Parser\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Monitoring\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-schedulerTest\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-AdmCtrl\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Synchronization\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(VAGRANT_BUILD_CONF)
-	printf 'MAKE += -j4' >> $(VAGRANT_BUILD_CONF)
+	@echo "Create build directory "$(VAGRANT_BUILD_DIR)"and set permissions"
+	sudo mkdir -p $(VAGRANT_BUILD_DIR)
+	sudo chown -R ubuntu $(VAGRANT_BUILD_DIR)
+	sudo chgrp -R ubuntu $(VAGRANT_BUILD_DIR)
+	sudo chmod 777 -R $(VAGRANT_BUILD_DIR)
+	@echo "DONE!"
+	@echo ""
+	@echo "Call genode/tool/create_builddir for target "$(GENODE_TARGET)
+	@echo ""
+	@genode/tool/create_builddir $(GENODE_TARGET) BUILD_DIR=$(VAGRANT_GENODE_BUILD_DIR)
+	@echo "DONE!"
+	@echo ""
+	@echo "Add repositories to genode"
+	@echo ""
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/libports\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-dom0-HW\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Taskloader\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Parser\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Monitoring\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-schedulerTest\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-AdmCtrl\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Synchronization\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'MAKE += -j4' >> $(VAGRANT_BUILD_CONF)
+	@echo ""
+	@echo "FINISHED!"
 
 jenkins_build_dir:
 	genode/tool/create_builddir $(GENODE_TARGET) BUILD_DIR=$(JENKINS_GENODE_BUILD_DIR)
@@ -88,11 +103,15 @@ jenkins_clean:
 # ================================================================
 # Run Genode with an active dom0 server.
 vagrant_run:
+	@echo "Execute genode makefile in build directory" $(VAGRANT_GENODE_BUILD_DIR)
+	@echo ""
 	$(MAKE) -C $(VAGRANT_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
-	mkdir -p  $(VAGRANT_BUILD_DIR)/images
-	#Delete old images
-	rm -rf $(VAGRANT_BUILD_DIR)/images/image.elf $(VAGRANT_BUILD_DIR)/images/modules.list $(VAGRANT_BUILD_DIR)/images/genode
-	#Copy images to /var/lib/tftpboot
+	@echo "Create image tmp directory"
+	@mkdir -p  $(VAGRANT_BUILD_DIR)/images
+	@echo ""
+	@echo "Delete old images"
+	@rm -rf $(VAGRANT_BUILD_DIR)/images/image.elf $(VAGRANT_BUILD_DIR)/images/modules.list $(VAGRANT_BUILD_DIR)/images/genode
+	@echo "Copy images to tmp directory"
 	cp -R $(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/image.elf \
 	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/modules.list \
 	$(VAGRANT_BUILD_DIR)/genode-focnados_panda/var/run/$(PROJECT)/genode $(VAGRANT_BUILD_DIR)/images
