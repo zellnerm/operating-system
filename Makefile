@@ -106,15 +106,12 @@ vagrant_run:
 	@echo "Execute genode makefile in build directory" $(VAGRANT_GENODE_BUILD_DIR)
 	@echo ""
 	$(MAKE) -C $(VAGRANT_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
-	@echo "Create image tmp directory"
-	@mkdir -p  $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)
-	@echo ""
 	@echo "Delete old images"
-	@rm -rf $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/image.elf $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/modules.list $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)/genode
-	@echo "Copy images to tmp directory"
+	@rm -rf /var/lib/tftpboot/image.elf /var/lib/tftpboot/modules.list /var/lib/tftpboot/genode
+	@echo "Copy images to tftpboot directory"
 	cp -R $(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/image.elf \
 	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/modules.list \
-	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode $(VAGRANT_BUILD_DIR)/images/$(GENODE_TARGET)
+	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode /var/lib/tftpboot/$(GENODE_TARGET)
 
 jenkins_run:
 	$(MAKE) -C $(JENKINS_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
