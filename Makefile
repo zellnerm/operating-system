@@ -4,7 +4,7 @@ PROJECT		?= dom0-HW
 TOOLCHAIN_TARGET    ?= arm
 
 # options: see tool/create_builddir
-GENODE_TARGET       ?= focnados_pbxa9
+GENODE_TARGET       ?= focnados_panda
 
 VAGRANT_BUILD_DIR           ?= /build
 VAGRANT_TOOLCHAIN_BUILD_DIR ?= $(VAGRANT_BUILD_DIR)/toolchain-$(TOOLCHAIN_TARGET)
