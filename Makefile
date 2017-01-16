@@ -25,7 +25,7 @@ jenkins: foc jenkins_build_dir
 toolchain:
 	mkdir -p $(VAGRANT_TOOLCHAIN_BUILD_DIR)
 	cd $(VAGRANT_TOOLCHAIN_BUILD_DIR);\
-	genode/tool/tool_chain $(TOOLCHAIN_TARGET)
+	/vagrant/genode/tool/tool_chain $(TOOLCHAIN_TARGET)
 #
 # ================================================================
 
@@ -42,6 +42,9 @@ libports:
 
 dde_linux:
 	$(MAKE) -C genode/repos/dde_linux prepare
+
+dom0:
+	$(MAKE) -C genode/repos/dom0 prepare
 #
 # ================================================================
 
@@ -73,6 +76,7 @@ vagrant_build_dir:
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-AdmCtrl\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Synchronization\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dom0\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'MAKE += -j4' >> $(VAGRANT_BUILD_CONF)
 	@echo ""
 	@echo "FINISHED!"

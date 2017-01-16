@@ -1,6 +1,6 @@
 [submodule "genode"]
 	path = genode
-	url = https://github.com/argos-research/genode
+	url = https://github.com/zellnerm/genode
 	branch = focnados
 [submodule "genode-dom0-HW"]
 	path = genode-dom0-HW
