@@ -111,7 +111,7 @@ vagrant_run:
 	@echo "Copy images to tftpboot directory"
 	cp -R $(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/image.elf \
 	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/modules.list \
-	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode /var/lib/tftpboot/$(GENODE_TARGET)
+	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode /var/lib/tftpboot/
 
 jenkins_run:
 	$(MAKE) -C $(JENKINS_GENODE_BUILD_DIR) run/$(PROJECT) #declare which run file to run
