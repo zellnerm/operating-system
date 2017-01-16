@@ -43,8 +43,8 @@ libports:
 dde_linux:
 	$(MAKE) -C genode/repos/dde_linux prepare
 
-dom0:
-	$(MAKE) -C genode/repos/dom0 prepare
+dom0_tasks:
+	$(MAKE) -C genode/repos/dom0_tasks prepare
 #
 # ================================================================
 
@@ -76,8 +76,8 @@ vagrant_build_dir:
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-AdmCtrl\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Synchronization\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(VAGRANT_BUILD_CONF)
-	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dom0\n' >> $(VAGRANT_BUILD_CONF)
-	@printf 'MAKE += -j4' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dom0_tasks\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'MAKE += -j16' >> $(VAGRANT_BUILD_CONF)
 	@echo ""
 	@echo "FINISHED!"
 
