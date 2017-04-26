@@ -16,7 +16,7 @@
 	url = https://github.com/argos-research/genode-Monitoring.git
 [submodule "toolchain-host"]
 	path = toolchain-host
-	url = https://github.com/argos-research/toolchain-host
+	url = https://github.com/zellnerm/toolchain-host
 [submodule "genode-schedulerTest"]
 	path = genode-schedulerTest
 	url = https://github.com/argos-research/genode-schedulerTest.git
@@ -26,3 +26,6 @@
 [submodule "genode-AdmCtrl"]
 	path = genode-AdmCtrl
 	url = https://github.com/argos-research/genode-AdmCtrl
+[submodule "toolchain-host-ml"]
+	path = toolchain-host-ml
+	url = https://github.com/argos-research/toolchain-host-ml.git
