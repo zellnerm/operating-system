@@ -136,3 +136,15 @@ packages:
 	sudo apt-get install libncurses5-dev texinfo autogen autoconf2.64 g++ libexpat1-dev flex bison gperf cmake libxml2-dev libtool zlib1g-dev libglib2.0-dev make pkg-config gawk subversion expect git libxml2-utils syslinux xsltproc yasm iasl lynx unzip qemu
 #
 # ================================================================
+
+
+again:
+	@echo "Performing make again for " $(VAGRANT_GENODE_BUILD_DIR)
+	@echo ""
+	$(MAKE) -C $(VAGRANT_GENODE_BUILD_DIR) again
+	@rm -rf /var/lib/tftpboot/image.elf /var/lib/tftpboot/modules.list /var/lib/tftpboot/genode
+	@echo "Copy images to tftpboot directory"
+	cp -R $(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/image.elf \
+	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/modules.list \
+	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode /var/lib/tftpboot/
+
