@@ -149,3 +149,14 @@ again:
 	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/modules.list \
 	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode /var/lib/tftpboot/
 
+copy_bin:
+	@echo "Copy all binary to toolchain-host"
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/cond_42/cond_42 /vagrant/toolchain-host/host_dom0/bin
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/cond_mod/cond_mod /vagrant/toolchain-host/host_dom0/bin
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/hey/hey /vagrant/toolchain-host/host_dom0/bin
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/idle/idle /vagrant/toolchain-host/host_dom0/bin
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/linpack/linpack /vagrant/toolchain-host/host_dom0/bin
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/namaste/namaste /vagrant/toolchain-host/host_dom0/bin
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/pi/pi /vagrant/toolchain-host/host_dom0/bin
+	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/tumatmul/tumatmul /vagrant/toolchain-host/host_dom0/bin
+
