@@ -10,13 +10,13 @@
 	url = https://github.com/argos-research/genode-Taskloader
 [submodule "genode-Parser"]
 	path = genode-Parser
-	url = https://github.com/argos-research/genode-Parser
+	url = https://github.com/zellnerm/genode-Parser
 [submodule "genode-Monitoring"]
 	path = genode-Monitoring
 	url = https://github.com/argos-research/genode-Monitoring.git
 [submodule "toolchain-host"]
 	path = toolchain-host
-	url = https://github.com/zellnerm/toolchain-host
+	url = https://github.com/argos-research/toolchain-host 
 [submodule "genode-schedulerTest"]
 	path = genode-schedulerTest
 	url = https://github.com/argos-research/genode-schedulerTest.git

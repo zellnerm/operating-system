@@ -77,6 +77,7 @@ vagrant_build_dir:
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Synchronization\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dde_linux\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'REPOSITORIES += $$(GENODE_DIR)/repos/dom0_tasks\n' >> $(VAGRANT_BUILD_CONF)
+	@printf 'REPOSITORIES += $$(GENODE_DIR)/../genode-Utilization\n' >> $(VAGRANT_BUILD_CONF)
 	@printf 'MAKE += -j16' >> $(VAGRANT_BUILD_CONF)
 	@echo ""
 	@echo "FINISHED!"
