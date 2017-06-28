@@ -4,7 +4,7 @@
 	branch = focnados
 [submodule "genode-dom0-HW"]
 	path = genode-dom0-HW
-	url = https://github.com/argos-research/genode-dom0-HW
+	url = https://github.com/zellnerm/genode-dom0-HW 
 [submodule "genode-Taskloader"]
 	path = genode-Taskloader
 	url = https://github.com/argos-research/genode-Taskloader
