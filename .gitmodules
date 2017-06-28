@@ -29,3 +29,6 @@
 [submodule "toolchain-host-ml"]
 	path = toolchain-host-ml
 	url = https://github.com/argos-research/toolchain-host-ml.git
+[submodule "genode-Utilization"]
+	path = genode-Utilization
+	url = https://github.com/argos-research/genode-Utilization
