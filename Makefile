@@ -139,15 +139,27 @@ packages:
 # ================================================================
 
 
+
+all:
+	$(MAKE) -C $(VAGRANT_GENODE_BUILD_DIR) core init dom0-HW dom0_tasks parser taskloader mon_manager utilization drivers/timer drivers/nic
+
 again:
 	@echo "Performing make again for " $(VAGRANT_GENODE_BUILD_DIR)
 	@echo ""
 	$(MAKE) -C $(VAGRANT_GENODE_BUILD_DIR) again
-	@rm -rf /var/lib/tftpboot/image.elf /var/lib/tftpboot/modules.list /var/lib/tftpboot/genode
-	@echo "Copy images to tftpboot directory"
-	cp -R $(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/image.elf \
-	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/modules.list \
-	$(VAGRANT_GENODE_BUILD_DIR)/var/run/$(PROJECT)/genode /var/lib/tftpboot/
+	cp $(VAGRANT_GENODE_BUILD_DIR)/parser/parser $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/dom0-HW/dom0-HW $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/core/spec/panda/core $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/init/init $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/mon_manager/mon_manager $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/taskloader/taskloader $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/utilization/utilization $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/drivers/gpio/spec/omap4/gpio_drv $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/drivers/timer/timer $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/drivers/usb/usb_drv $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	cp $(VAGRANT_GENODE_BUILD_DIR)/bin/* $(VAGRANT_GENODE_BUILD_DIR)/var/run/dom0-HW/genode
+	make -C /build/genode-focnados_panda/l4/source O=/build/genode-focnados_panda/l4 E=genode MODULES_LIST=/build/genode-focnados_panda/var/run/dom0-HW/modules.list MODULE_SEARCH_PATH=/build/genode-focnados_panda/var/run/dom0-HW:/build/genode-focnados_panda/kernel/fiasco.oc:/build/genode-focnados_panda/l4 SYSTEM_TARGET=/usr/local/genode-gcc/bin/genode-arm- elfimage
+	cp /build/genode-focnados_panda/l4/images/bootstrap.elf /var/lib/tftpboot/image.elf 
 
 copy_bin:
 	@echo "Copy all binary to toolchain-host"
@@ -159,4 +171,5 @@ copy_bin:
 	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/namaste/namaste /vagrant/toolchain-host/host_dom0/bin
 	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/pi/pi /vagrant/toolchain-host/host_dom0/bin
 	@cp $(VAGRANT_GENODE_BUILD_DIR)/dom0_tasks/tumatmul/tumatmul /vagrant/toolchain-host/host_dom0/bin
+
 
